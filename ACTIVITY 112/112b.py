@@ -23,6 +23,3 @@ print('Done! Look at your beautiful circle!')
 # get the screen object and make it persist
 wn = trtl.Screen()
 wn.mainloop()
-
-wn = trtl.Screen()
-wn.mainloop()
