@@ -1,24 +1,32 @@
-# import the turtle module
-import turtle as trtl
+import datetime as dt
 
-# create the turtle object
-painter = trtl.Turtle()
+username = input("What is your name? ")
+print("Hello, " + username + ", welcome to my program.")
 
-print("Making a circle...")
+age = int(input("How old are you? "))
 
-# ask user for a color (such as red, green, blue, pink, purple)
-colorchoice = input('What color should the circle be? ')
-painter.pencolor(colorchoice)
+yearrn = dt.datetime.now().year
 
+birthyear = yearrn - age
 
-# ask user for the radius of a circle
-radiusmoment = int(input('How big should this circle be? (radius) '))
+def guess():
+    firstguess = input("Hmm... I assume you were born in " + str(birthyear) + ". Is this correct? (y/n)")
+    if firstguess == "y":
+        print("Yay! I guessed your birth year.")
+    elif firstguess == "n":
+        def run2():
+            newbirthyear = birthyear - 1
+            secondguess = input("Oh.. were you born in " + str(newbirthyear) + "? (y/n)")
+            if secondguess == "y":
+                print("Yay! I guessed your birth year.")
+            elif secondguess == "n":
+                print("Hmm... I couldn't guess your birth year.")
+            else:
+                print("Invalid response. Must be of either 'y' or 'n'.")
+                run2()
+        run2()
+    else:
+        print("Invalid response. Must be of either 'y' or 'n'.")
+        guess()
 
-# draw a circle with the radius and line color entered by the user
-painter.circle(radiusmoment)
-
-print('Done! Look at your beautiful circle!')
-
-# get the screen object and make it persist
-wn = trtl.Screen()
-wn.mainloop()
+guess()
