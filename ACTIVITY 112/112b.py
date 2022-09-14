@@ -15,8 +15,22 @@ pen.pencolor(colorchoice)
 # ask user for the radius of a circle
 radiusmoment = int(input('How big should this circle be? (radius) '))
 
+print("A full circle is 360 degrees.")
+angle = int(input("What angle should this circle go around? "))
+
+segments = int(input("How many segments (lines) should the circle have? "))
+
+pen.penup()
+pen.goto(0, (radiusmoment * -1))
+pen.pendown()
+pen.fillcolor(colorchoice)
+
+pen.begin_fill()
+
 # draw a circle with the radius and line color entered by the user
-pen.circle(radiusmoment)
+pen.circle(radiusmoment, angle, segments)
+
+pen.end_fill()
 
 print('Done! Look at your beautiful circle!')
 
