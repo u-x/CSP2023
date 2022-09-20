@@ -32,6 +32,14 @@ painter.goto(20,190)
 for petal in range(18):
   painter.right(20)
   painter.forward(30)
+
+  remainder = petal % 2
+
+  if remainder == 0:
+    painter.color('darkorchid')
+  else:
+    painter.color('purple')
+
   painter.stamp()
 
 # ring 2 of flower
