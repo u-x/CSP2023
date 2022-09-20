@@ -18,8 +18,9 @@ num_floors = 63
 for floor in range(num_floors):
     # set placement and color of turtle
     painter.penup()
+    okthen = floor % 21
     painter.goto(x, y)
-    painter.color("gray")
+    painter.color("red")
     y = y + 5 # location of next floor
     rem = floor % 6
     print(rem)
@@ -28,6 +29,10 @@ for floor in range(num_floors):
     #draw the floor
     painter.pendown()
     painter.forward(50)
+    if okthen == 20:
+        x = x + 60
+        y = -150
+    
 
 wn = trtl.Screen()
 wn.mainloop()

@@ -33,7 +33,7 @@ for petal in range(18):
   painter.right(20)
   painter.forward(30)
 
-  remainder = petal % 2
+  remainder = petal % 4
 
   if remainder == 0:
     painter.color('darkorchid')
