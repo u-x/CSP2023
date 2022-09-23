@@ -23,7 +23,7 @@ while (answer == "y"):
 
   while painter.ycor() < height:
     ned = space % 200
-    if ned > 99:
+    if ned < 99:
         painter.fillcolor(color1)
         painter.color(color1)
     else:
