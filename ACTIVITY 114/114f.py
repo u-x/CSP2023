@@ -12,9 +12,11 @@ painter.hideturtle()
 painter.shapesize(2)
 painter.speed(0)
 
+col = int(input("Which column should be shaded? (pick a number 1 through 7) "))
+
 for j in range(8):
     for i in range(7):
-        if i == 0:
+        if i == col - 1:
             painter.color("red")
         else:
             painter.color("blue")
