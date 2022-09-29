@@ -22,7 +22,6 @@ while (inc < legs):
   pen.setheading(angle*inc)
   pen.forward(length)
   inc = inc + 1
-  print("z*n=", angle*inc)
 pen.hideturtle()
 wn = trtl.Screen()
 wn.mainloop()
