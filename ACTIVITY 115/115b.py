@@ -18,6 +18,11 @@ def turn_left():
   robot.lt(90)
   robot.speed(2)
 
+def turn_right():
+  robot.speed(0)
+  robot.rt(90)
+  robot.speed(2)
+
 #----- init screen
 wn = trtl.Screen()
 wn.setup(width=screen_w, height=screen_h)
@@ -51,8 +56,7 @@ for step in range(3): # forward 3
 for step in range(3):
   move()
 
-for step in range(3):
-  turn_left()
+turn_right()
 
 for step in range(2):
   move()

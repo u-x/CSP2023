@@ -18,6 +18,11 @@ def turn_left():
   robot.lt(90)
   robot.speed(2)
 
+def turn_right():
+  robot.speed(0)
+  robot.rt(90)
+  robot.speed(2)
+
 #----- init screen
 wn = trtl.Screen()
 wn.setup(width=screen_w, height=screen_h)
@@ -52,8 +57,7 @@ for steps in range(2):
     if steps == 1:
         robot.pencolor("cornflower blue")     
     move()
-    for i in range(3):
-        turn_left()
+    turn_right()
     for i in range(2):
         move()
     turn_left()
