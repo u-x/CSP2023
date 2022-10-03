@@ -11,17 +11,30 @@ pen.circle(20)
 # spider leg config
 legs = 8
 length = 70
-angle = 360 / legs
-print(angle)
+angle = 25
 pen.pensize(5)
 inc = 0
 
 # draw the legs
 while (inc < legs):
   pen.goto(0,20)
-  pen.setheading(angle*inc)
+  if (inc > 3):
+    pen.setheading(angle*inc+45)
+  else:
+    pen.setheading(angle*inc-45)
   pen.forward(length)
   inc = inc + 1
 pen.hideturtle()
+pen.pu()
+pen.goto(-15, 30)
+pen.color("white")
+pen.dot(20)
+pen.color("black")
+pen.dot(10)
+pen.goto(15, 30)
+pen.color('white')
+pen.dot(20)
+pen.color('black')
+pen.dot(10)
 wn = trtl.Screen()
 wn.mainloop()
