@@ -14,15 +14,15 @@ num_legs = 6
 inc = 0
 angle = 30
 ladybug.pensize(5)
-length = 40
+length = 50
 
 while (inc < num_legs):
   ladybug.goto(0,-35)
   ladybug.pd()
   if (inc > 2):
-    ladybug.setheading(angle*inc+45)
+    ladybug.setheading(angle*inc+60)
   else:
-    ladybug.setheading(angle*inc-45)
+    ladybug.setheading(angle*inc-30)
   ladybug.forward(length)
   inc = inc + 1
 ladybug.setheading(0)
