@@ -1,37 +1,16 @@
-#   a117_traversing_turtles.py
-#   Add code to make turtles move in a circle and change colors.
-import turtle as trtl
+animals_list = ['dog', 'cat', 'fish', 'bird', 'turtle']
 
-# create an empty list of turtles
-my_turtles = []
+print(animals_list)
+print(type(animals_list))
 
-# use interesting shapes and colors
-turtle_shapes = ["arrow", "turtle", "circle", "square", "triangle", "classic"]
-turtle_colors = ["red", "blue", "green", "orange", "purple", "gold"]
+animals_list.append('snake')
+print(animals_list)
+animals_list.pop()
 
-# init direction var
-direction = 90
+for animal in animals_list:
+    print(animal)
 
-for s in turtle_shapes:
-  t = trtl.Turtle(shape=s)
-  my_turtles.append(t)
-  t.pu()
-  t.color(turtle_colors.pop())
+print(animals_list[2])
 
-# turtle spawn point
-startx = 0
-starty = 0
-
-# continue pattern
-for t in my_turtles:
-  t.goto(startx, starty)
-  t.setheading(direction)
-  t.pd()
-  t.right(45)     
-  t.forward(50)
-  startx = t.xcor()
-  starty = t.ycor()
-  direction = t.heading()
-
-wn = trtl.Screen()
-wn.mainloop()
+animals_list[2] = "mouse"
+print(animals_list)
