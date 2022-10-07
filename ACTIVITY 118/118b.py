@@ -41,9 +41,11 @@ for step in range(50):
         for vt in vert_turtles:
             ht.forward(3)
             vt.forward(3)
-            if (abs(ht.xcor() - vt.xcor()) < 20):
+            if abs(vt.xcor() - ht.xcor()) < 20 and vt.shape() == ht.shape():
+                ht.fillcolor("gray")
                 horiz_turtles.remove(ht)
-            if (abs(ht.ycor() - vt.ycor()) < 20):
+            if abs(vt.ycor() - ht.ycor()) < 20 and vt.shape() == ht.shape():
+                vt.fillcolor("gray")
                 vert_turtles.remove(vt)
 
 
