@@ -6,6 +6,10 @@ stamp.shape("square")
 stamp.shapesize(1)
 stamp.speed(0)
 
+wn = turtle.Screen()
+wn.title("i did your mother last night")
+wn.bgcolor("LightSkyBlue")
+
 yax = 160
 
 # hat start
@@ -184,5 +188,49 @@ for step in range(12):
     stamp.forward(20)
     stamp.stamp()
 
-wn = turtle.Screen()
+stamp.goto(100, yax)
+yax -= 20
+stamp.color("#0474c4")
+
+for step in range(8):
+    if step == 3 or step == 4:
+        stamp.forward(20)
+    else:
+        stamp.forward(20)
+        stamp.stamp()
+
+# WHAT ARE THOSE (shoes)
+stamp.goto(120, yax)
+yax -= 20
+stamp.color("#974807")
+
+for step in range(10):
+    if step >= 3 and step <= 6:
+        stamp.forward(20)
+    else:
+        stamp.forward(20)
+        stamp.stamp()
+
+stamp.goto(140, yax)
+yax -= 20
+stamp.color("#974807")
+
+for step in range(12):
+    if step >= 4 and step <= 7:
+        stamp.forward(20)
+    else:
+        stamp.forward(20)
+        stamp.stamp()
+
+# ground
+
+stamp.goto(500, yax)
+yax -= 60
+wn.addshape("groundblock.gif")
+stamp.shape("groundblock.gif")
+
+for step in range(50):
+    stamp.forward(60)
+    stamp.stamp()
+
 wn.mainloop()
