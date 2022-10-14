@@ -212,7 +212,7 @@ for step in range(10):
         stamp.stamp()
 
 stamp.goto(140, yax)
-yax -= 20
+yax -= 40
 stamp.color("#974807")
 
 for step in range(12):
@@ -223,14 +223,22 @@ for step in range(12):
         stamp.stamp()
 
 # ground
-
-stamp.goto(500, yax)
+stamp.goto(1500, yax)
 yax -= 60
 wn.addshape("groundblock.gif")
 stamp.shape("groundblock.gif")
 
-for step in range(50):
+for step in range(500):
     stamp.forward(60)
     stamp.stamp()
+    if step % 75 == 0 and step != 0:
+        stamp.goto(1500, yax)
+        yax -= 60
+
+wn.addshape("questionblock.gif")
+stamp.shape("questionblock.gif")
+stamp.goto(20, 380)
+
+stamp.stamp()
 
 wn.mainloop()
