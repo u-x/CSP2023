@@ -7,6 +7,7 @@ stamp.shapesize(1)
 stamp.speed(0)
 
 wn = turtle.Screen()
+wn.setup(width=1000, height=1000)
 wn.title("i did your mother last night")
 wn.bgcolor("LightSkyBlue")
 
@@ -240,5 +241,26 @@ stamp.shape("questionblock.gif")
 stamp.goto(20, 380)
 
 stamp.stamp()
+
+stamp.shape("classic")
+stamp.goto(-500, 600)
+stamp.pd()
+stamp.pencolor('#ffff00')
+stamp.fillcolor("#ffff00")
+stamp.begin_fill()
+stamp.pensize(5)
+stamp.turtlesize(1)
+stamp.circle(100)
+stamp.end_fill()
+
+head = 360
+
+for angles in range(11):
+    stamp.pu()
+    stamp.goto(-500, 500)
+    stamp.setheading(head)
+    stamp.pd()
+    stamp.forward(125)
+    head -= 9
 
 wn.mainloop()
