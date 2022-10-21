@@ -1,6 +1,7 @@
 # a121_catch_a_turtle.py
 #-----import statements-----
 
+from tracemalloc import start
 import turtle
 import random
 
@@ -24,10 +25,12 @@ scorewriter = turtle.Turtle()
 scorewriter.pu()
 scorewriter.hideturtle()
 scorewriter.goto(0, 375)
+scorewriter.color("#ffffff")
 fontsettings = ("Arial", 20, "normal")
 
 counter =  turtle.Turtle()
 counter.pu()
+counter.color("#ffffff")
 counter.hideturtle()
 counter.goto(0, -400)
 timer = 30
@@ -45,10 +48,12 @@ def spot_clicked(x, y):
         change_position()
 
 def change_position():
+    t.shapesize(0.01)
     t.hideturtle()
     newx = random.randint(-200, 200)
     newy = random.randint(-200, 200)
     t.goto(newx, newy)
+    t.shapesize(random.randint(1, 4))
     t.showturtle()
 
 def update_score():
@@ -66,10 +71,11 @@ def countdown():
   else:
     counter.write("Timer: " + str(timer), font=fontsettings)
     timer -= 1
-    counter.getscreen().ontimer(countdown, counter_interval) 
+    counter.getscreen().ontimer(countdown, counter_interval)
 
 #-----events----------------
-t.onclick(spot_clicked)
 wn = turtle.Screen()
+wn.bgcolor("#000000")
 wn.ontimer(countdown, counter_interval) 
 wn.mainloop()
+t.onclick(spot_clicked)
