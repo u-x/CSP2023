@@ -1,7 +1,6 @@
 # a121_catch_a_turtle.py
 #-----import statements-----
 
-from tracemalloc import start
 import turtle
 import random
 
@@ -25,12 +24,12 @@ scorewriter = turtle.Turtle()
 scorewriter.pu()
 scorewriter.hideturtle()
 scorewriter.goto(0, 375)
-scorewriter.color("#ffffff")
+scorewriter.color("#000000")
 fontsettings = ("Arial", 20, "normal")
 
 counter =  turtle.Turtle()
 counter.pu()
-counter.color("#ffffff")
+counter.color("#000000")
 counter.hideturtle()
 counter.goto(0, -400)
 timer = 30
@@ -48,8 +47,8 @@ def spot_clicked(x, y):
         change_position()
 
 def change_position():
-    t.shapesize(0.01)
     t.hideturtle()
+    t.fillcolor((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
     newx = random.randint(-200, 200)
     newy = random.randint(-200, 200)
     t.goto(newx, newy)
@@ -60,22 +59,23 @@ def update_score():
     global score
     score += 1
     scorewriter.clear()
-    scorewriter.write(score, font=fontsettings)
+    scorewriter.write("Score: " + str(score), font=fontsettings, align="center")
 
 def countdown():
   global timer, timer_up
   counter.clear()
   if timer <= 0:
-    counter.write("Time's Up", font=fontsettings)
+    counter.write("Time's Up", font=fontsettings, align="center")
     timer_up = True
   else:
-    counter.write("Timer: " + str(timer), font=fontsettings)
+    counter.write("Timer: " + str(timer), font=fontsettings, align="center")
     timer -= 1
     counter.getscreen().ontimer(countdown, counter_interval)
 
 #-----events----------------
+t.onclick(spot_clicked)
 wn = turtle.Screen()
-wn.bgcolor("#000000")
+wn.bgcolor("#ffeeee")
+wn.colormode(255)
 wn.ontimer(countdown, counter_interval) 
 wn.mainloop()
-t.onclick(spot_clicked)

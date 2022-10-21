@@ -1,44 +1,81 @@
-# INSTRUCTIONS:
-#   TODO 1:
-#   Run this code and click on the circle a few times. Document what happens, or
-#   doesn't happen. Stop the code and observe the error message. Document what 
-#   you think this means.
-#
-#   TODO 2:
-#   Run this code again and click on the square a few times. Document what 
-#   happens in the python console. Stop the code. 
+# a121_catch_a_turtle.py
+#-----import statements-----
 
-import turtle as trtl
+import turtle
+import random
 
-score = 0 
+#-----game configuration----
 
-# circular turtle will not use a global variable
-spot = trtl.Turtle()
-spot.goto(-100, 0)
-spot.shape("circle")
-spot.shapesize(3)
+spot_color = "pink"
+spritesize = 2
+spriteshape = "circle"
+score = 0
 
-# square shaped turtle will use a global variable
-box = trtl.Turtle()
-box.goto(100,0)
-box.shape("square")
-box.shapesize(3)
+#-----initialize turtle-----
 
-# attempts to update the score for spot, but will not work because this function
-# does not have access to the score that was created above
-def update_score_for_spot(x,y):
-  global score
-  score += 1
-  print(score)
+t = turtle.Turtle()
 
-# update_score_for_box will update the score for spot
-def update_score_for_box(x,y):
-  global score # gives this function access to the score that was created above
-  score += 1
-  print(score)
+t.shape(spriteshape)
+t.fillcolor(spot_color)
+t.shapesize(spritesize)
+t.penup()
 
-#---------events----------
-spot.onclick(update_score_for_spot)
-box.onclick(update_score_for_box)
-wn = trtl.Screen()
+scorewriter = turtle.Turtle()
+scorewriter.pu()
+scorewriter.hideturtle()
+scorewriter.goto(0, 375)
+scorewriter.color("#000000")
+fontsettings = ("Arial", 20, "normal")
+
+counter =  turtle.Turtle()
+counter.pu()
+counter.color("#000000")
+counter.hideturtle()
+counter.goto(0, -400)
+timer = 30
+counter_interval = 1000   #1000 represents 1 second
+timer_up = False
+
+#-----game functions--------
+
+def spot_clicked(x, y):
+    global timer_up
+    if (timer_up == True):
+        t.hideturtle()
+    else:
+        update_score()
+        change_position()
+
+def change_position():
+    t.hideturtle()
+    t.fillcolor((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+    newx = random.randint(-200, 200)
+    newy = random.randint(-200, 200)
+    t.goto(newx, newy)
+    t.shapesize(random.randint(1, 4))
+    t.showturtle()
+
+def update_score():
+    global score
+    score += 1
+    scorewriter.clear()
+    scorewriter.write(score, font=fontsettings)
+
+def countdown():
+  global timer, timer_up
+  counter.clear()
+  if timer <= 0:
+    counter.write("Time's Up", font=fontsettings)
+    timer_up = True
+  else:
+    counter.write("Timer: " + str(timer), font=fontsettings)
+    timer -= 1
+    counter.getscreen().ontimer(countdown, counter_interval)
+
+#-----events----------------
+t.onclick(spot_clicked)
+wn = turtle.Screen()
+wn.bgcolor("#ffeeee")
+wn.colormode(255)
+wn.ontimer(countdown, counter_interval) 
 wn.mainloop()
