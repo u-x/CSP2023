@@ -41,17 +41,15 @@ def get_scores(file_name):
 
     # TODO 3: use a while loop to index beyond the comma, skipping the player's name
     while (line[index] != ","):
-      print(line[index])
       index += 1
     index += 1
 
     # TODO 4: use a while loop to get the score
     while line[index] != "\n":
       leader_score += line[index]
-      print(line)
       index += 1
     # TODO 5: add the player score to the scores list
-      scores.append(int(leader_score))
+    scores.append(int(leader_score))
   leaderboard_file.close()
 
   # TODO 7: return the scores in place of the empty list
@@ -113,7 +111,7 @@ def draw_leaderboard(high_scorer, leader_names, leader_scores, turtle_object, pl
   turtle_object.pendown()
 
   # TODO 14: display message about player making/not making leaderboard
-  if player_score >= leader_scores[4] or len(leader_scores) < 5:
+  if high_scorer == True:
     turtle_object.write("Congratulations!\nYou made the leaderboard!", font=font_setup)
   else:
     turtle_object.write("Sorry!\nYou didn't make the leaderboard.\nMaybe next time!", font=font_setup)

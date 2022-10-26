@@ -89,7 +89,6 @@ def manage_leaderboard():
   if (len(leader_scores_list) < 5 or score >= leader_scores_list[4]):
     lb.update_leaderboard(lbfile, leader_names_list, leader_scores_list, pname, score)
     lb.draw_leaderboard(True, leader_names_list, leader_scores_list, t, score)
-
   else:
     lb.draw_leaderboard(False, leader_names_list, leader_scores_list, t, score)
 
