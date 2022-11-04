@@ -50,10 +50,14 @@ def spot_clicked(x, y):
         change_position()
 
 def change_position():
+    t.fillcolor('grey')
+    t.stamp()
     t.hideturtle()
     t.fillcolor((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
     newx = random.randint(-200, 200)
     newy = random.randint(-200, 200)
+    # newx = 0
+    # newy = 0
     t.goto(newx, newy)
     t.shapesize(random.randint(1, 4))
     t.showturtle()
