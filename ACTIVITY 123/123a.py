@@ -1,7 +1,8 @@
 #   a123_apple_1.py
-from operator import length_hint
 import turtle as trtl
 import random as rand
+import functools
+import string
 
 #-----setup-----
 apple_image = "apple.gif" # Store the file name of your shape
@@ -12,7 +13,7 @@ ground_height = -200
 apple_letter_x_offset = 0
 apple_letter_y_offset = -40
 letter_font = ("Arial", 45, "bold")
-letter_list = ["B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+letter_list = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 current_letter = "A"
 
 wn = trtl.Screen()
@@ -53,6 +54,7 @@ def reset_apple(active_apple):
   troletter = letter_list.pop(index)
   draw_apple(active_apple, troletter)
   current_letter = troletter
+  wn.onkeypress(lambda n=current_letter: check_apple(n), current_letter)
 
 
 def drop_apple():
@@ -72,16 +74,25 @@ def draw_letter(active_apple, letter):
   active_apple.write(letter, font=letter_font, align="center")
   active_apple.setpos(pos)
 
+def check_apple(letter):
+  if current_letter == letter:
+    drop_apple()
+
+def first_fall():
+  for key in letter_list:
+    dafunc = functools.partial(check_apple, key)
+    wn.onkeypress(dafunc, key)
+
 
 #-----function calls-----
 draw_apple(apple, "A")
 # draw_pear(pear)
 # drop_apple(apple)
-def check_apple_a():
-  if current_letter == "A":
-    drop_apple()
 
-wn.onkeypress(check_apple_a, current_letter)
+# drop_apple()
+
+# check_apple("A")
 
 wn.listen()
+
 wn.mainloop()
