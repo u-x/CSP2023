@@ -14,26 +14,6 @@ restwalllength = 0
 doorStartLocation = 10
 barrierstartloc = 40
 
-# funcs
-
-def draw_door(loc):
-    # wall b4 door
-    maze_drawer.forward(loc)
-    # door
-    maze_drawer.pu()
-    maze_drawer.forward(dooropeninglength)
-    maze_drawer.pd()
-
-def draw_barrier(loc):
-    # wall b4 barrier
-    maze_drawer.forward(loc - dooropeninglength - randdoor)
-
-    # barrier
-    maze_drawer.left(90)
-    maze_drawer.forward(pathwidth*2)
-    maze_drawer.backward(pathwidth*2)
-    maze_drawer.right(90)
-
 # turtle
 
 maze_drawer = trtl.Turtle()
@@ -55,7 +35,12 @@ for side in range(0, sides, 1):
         
         maze_drawer.left(90)
         if (randdoor < randbarrier):
-            draw_door(randdoor)
+            # wall b4 door
+            maze_drawer.forward(randdoor)
+            # door
+            maze_drawer.pu()
+            maze_drawer.forward(dooropeninglength)
+            maze_drawer.pd()
 
             # wall b4 barrier
             maze_drawer.forward(randbarrier - dooropeninglength - randdoor)
