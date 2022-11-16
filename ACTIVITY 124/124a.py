@@ -21,6 +21,24 @@ maze_drawer.speed(0)
 maze_drawer.pencolor(wallcolor)
 maze_drawer.pensize(wallthiccness)
 
+# funcs
+def draw_door(pos):
+    maze_drawer.forward(pos)
+    # door
+    maze_drawer.pu()
+    maze_drawer.forward(dooropeninglength)
+    maze_drawer.pd()
+
+def draw_barrier(pos):
+    maze_drawer.forward(pos)
+    maze_drawer.left(90)
+    maze_drawer.forward(pathwidth*2)
+    maze_drawer.backward(pathwidth*2)
+    maze_drawer.right(90)
+
+def draw_restofwall(pos):
+    maze_drawer.forward(pos)
+
 for side in range(0, sides, 1):
     walllength += pathwidth
     if side <= 5:
@@ -35,45 +53,14 @@ for side in range(0, sides, 1):
         
         maze_drawer.left(90)
         if (randdoor < randbarrier):
-            # wall b4 door
-            maze_drawer.forward(randdoor)
-            # door
-            maze_drawer.pu()
-            maze_drawer.forward(dooropeninglength)
-            maze_drawer.pd()
-
-            # wall b4 barrier
-            maze_drawer.forward(randbarrier - dooropeninglength - randdoor)
-
-            # barrier
-            maze_drawer.left(90)
-            maze_drawer.forward(pathwidth*2)
-            maze_drawer.backward(pathwidth*2)
-            maze_drawer.right(90)
-
-            # rest of wall
-            restwalllength = (walllength - randbarrier)
-            maze_drawer.forward(restwalllength)
+            draw_door(randdoor)
+            draw_barrier(randbarrier - dooropeninglength - randdoor)
+            draw_restofwall(walllength - randbarrier)
 
         else:
-            # wall b4 barrier
-            maze_drawer.forward(randbarrier)
-
-            # barrier
-            maze_drawer.left(90)
-            maze_drawer.forward(pathwidth*2)
-            maze_drawer.backward(pathwidth*2)
-            maze_drawer.right(90)
-
-            # wall 2 door
-            maze_drawer.forward(randdoor - randbarrier)
-            maze_drawer.pu()
-            maze_drawer.forward(dooropeninglength)
-            maze_drawer.pd()
-
-            # rest of wall
-            restwalllength = (walllength - dooropeninglength - randdoor)
-            maze_drawer.forward(restwalllength)
+            draw_barrier(randbarrier)
+            draw_door(randdoor - randbarrier)
+            draw_restofwall(walllength - dooropeninglength - randdoor)
 
     # walllength -= pathwidth
 maze_drawer.hideturtle()
