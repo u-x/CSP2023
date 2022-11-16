@@ -20,6 +20,15 @@ maze_drawer = trtl.Turtle()
 maze_drawer.speed(0)
 maze_drawer.pencolor(wallcolor)
 maze_drawer.pensize(wallthiccness)
+keys = ["Up", "Down", "Left", "Right"]
+
+mazerunner = trtl.Turtle(shape="arrow")
+mazerunner.penup()
+mazerunner.goto(-20, 0)
+mazerunner.pendown()
+mazerunner.fillcolor("green")
+mazerunner.pencolor("green")
+
 
 # funcs
 def draw_door(pos):
@@ -38,6 +47,18 @@ def draw_barrier(pos):
 
 def draw_restofwall(pos):
     maze_drawer.forward(pos)
+
+def moverunner(key):
+    if key == "Left":
+        mazerunner.setheading(180)
+    elif key == "Right":
+        mazerunner.setheading(0)
+    elif key == "Up":
+        mazerunner.setheading(90)
+    elif key == "Down":
+        mazerunner.setheading(270)
+    mazerunner.forward(5)
+        
 
 for side in range(0, sides, 1):
     walllength += pathwidth
@@ -64,9 +85,11 @@ for side in range(0, sides, 1):
 
     # walllength -= pathwidth
 maze_drawer.hideturtle()
-
-# funcs
-
-# events
 wn = trtl.Screen()
+
+# keypresses
+for key in keys:
+    wn.onkeypress(lambda key=key: moverunner(key), key)
+# events
+wn.listen()
 wn.mainloop()
