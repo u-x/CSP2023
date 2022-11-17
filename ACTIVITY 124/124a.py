@@ -29,6 +29,20 @@ mazerunner.pendown()
 mazerunner.fillcolor("green")
 mazerunner.pencolor("green")
 
+mazeend = trtl.Turtle(shape="circle")
+mazeend.penup()
+mazeend.fillcolor("red")
+mazeend.turtlesize(0.7)
+mazeend.goto(165, 205)
+
+time = 0
+fontsettings = ("Arial", 20, "normal")
+
+timewriter = trtl.Turtle()
+timewriter.penup()
+timewriter.goto(0, 300)
+timewriter.hideturtle()
+game = True
 
 # funcs
 def draw_door(pos):
@@ -58,11 +72,31 @@ def moverunner(key):
     elif key == "Down":
         mazerunner.setheading(270)
     mazerunner.forward(5)
-        
+
+def reset_game():
+    global time, game
+    mazerunner.penup()
+    mazerunner.clear()
+    mazerunner.setheading(0)
+    mazerunner.goto(-20, 0)
+    mazerunner.pendown()
+    time = 0
+    game = True
+
+def countdown():
+    global time, timewriter
+    if (game == True):
+        timewriter.clear()
+        time += 1
+        timewriter.write("Timer: " + str(time) + "s", font=fontsettings, align="center")
+        timewriter.getscreen().ontimer(countdown, 1000)
 
 for side in range(0, sides, 1):
     walllength += pathwidth
     if side <= 5:
+        maze_drawer.left(90)
+        maze_drawer.forward(walllength)
+    elif side >= sides-4:
         maze_drawer.left(90)
         maze_drawer.forward(walllength)
     else:
@@ -91,5 +125,17 @@ wn = trtl.Screen()
 for key in keys:
     wn.onkeypress(lambda key=key: moverunner(key), key)
 # events
+
+def checkdistance():
+    global game
+    if (mazerunner.distance(mazeend) <= 3):
+        game = False
+        timewriter.clear()
+        timewriter.write("Finished! You finished the maze in " + str(time) + " seconds. Press R to restart!", font=fontsettings, align="center")
+    else:
+        wn.ontimer(checkdistance, 1000)
+wn.onkeypress(reset_game, "r")
 wn.listen()
+wn.ontimer(countdown, 1000)
+wn.ontimer(checkdistance, 1000)
 wn.mainloop()
