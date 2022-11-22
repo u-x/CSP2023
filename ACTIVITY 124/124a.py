@@ -82,6 +82,7 @@ def reset_game():
     mazerunner.pendown()
     time = 0
     game = True
+    wn.ontimer(countdown, 1000)
 
 def countdown():
     global time, timewriter
@@ -90,6 +91,7 @@ def countdown():
         time += 1
         timewriter.write("Timer: " + str(time) + "s", font=fontsettings, align="center")
         timewriter.getscreen().ontimer(countdown, 1000)
+        timewriter.getscreen().ontimer(checkdistance, 1000)
 
 for side in range(0, sides, 1):
     walllength += pathwidth
@@ -128,7 +130,7 @@ for key in keys:
 
 def checkdistance():
     global game
-    if (mazerunner.distance(mazeend) <= 3):
+    if (mazerunner.distance(mazeend) <= 5):
         game = False
         timewriter.clear()
         timewriter.write("Finished! You finished the maze in " + str(time) + " seconds. Press R to restart!", font=fontsettings, align="center")
