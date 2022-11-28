@@ -8,6 +8,8 @@ wn.bgcolor("#000000")
 p1score = 0
 p2score = 0
 
+wn.tracer(False)
+
 # borders
 bgdrawer = trtl.Turtle(shape="square")
 bgdrawer.turtlesize(0.25)
@@ -18,8 +20,10 @@ bgdrawer.goto(-400, 300)
 bgdrawer.pensize(10)
 bgdrawer.pd()
 for i in range(2):
+    bgdrawer.pencolor("#ffffff")
     bgdrawer.forward(800)
     bgdrawer.right(90)
+    bgdrawer.pencolor("#fefefe")
     bgdrawer.forward(600)
     bgdrawer.right(90)
 bgdrawer.pu()
@@ -33,15 +37,25 @@ for i in range(300):
     else:
         bgdrawer.forward(2)
 
-scorefont = ("Pong Score", 20, "bold")
+scorefont = ("Bit5x3 Regular", 60, "bold")
 
 # left player score
 p1scorewriter = trtl.Turtle()
 p1scorewriter.hideturtle()
 p1scorewriter.pu()
 p1scorewriter.color("white")
-p1scorewriter.goto(-20, 250)
-p1scorewriter.write("0", align="center", font=scorefont)
+p1scorewriter.goto(-20, 220)
+p1scorewriter.write("0", align="right", font=scorefont)
+
+# right player score
+p2scorewriter = trtl.Turtle()
+p2scorewriter.hideturtle()
+p2scorewriter.pu()
+p2scorewriter.color("white")
+p2scorewriter.goto(30, 220)
+p2scorewriter.write("0", align="left", font=scorefont)
+
+p1paddle = trtl.Turtle()
 
 
 wn.mainloop()
