@@ -3,7 +3,7 @@ wn = trtl.Screen()
 
 # background
 wn.bgcolor("#000000")
-trtl.addshape("H:/CSP2023/ACTIVITY 125/keke.gif")
+trtl.addshape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
 
 # vars
 p1score = 0
@@ -58,12 +58,9 @@ p2scorewriter.write("0", align="left", font=scorefont)
 
 # left player paddle
 p1paddle = trtl.Turtle()
-p1paddle.shape("H:/CSP2023/ACTIVITY 125/keke.gif")
+p1paddle.shape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
 p1paddle.penup()
 p1paddle.color("#ffffff")
 p1paddle.goto(-50, 0)
-
-
-
 
 wn.mainloop()
