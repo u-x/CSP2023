@@ -1,5 +1,6 @@
 import turtle as trtl
 import random
+import time
 wn = trtl.Screen()
 
 # background
@@ -57,21 +58,27 @@ p2scorewriter.pu()
 p2scorewriter.color("white")
 p2scorewriter.goto(30, 220)
 p2scorewriter.write("0", align="left", font=scorefont)
-wn.tracer(True)
 
 # left player paddle
 p1paddle = trtl.Turtle()
-p1paddle.shape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
+# p1paddle.shape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
+p1paddle.shape("square")
+p1paddle.shapesize(stretch_len=6)
+p1paddle.setheading(90)
 p1paddle.penup()
 p1paddle.color("#ffffff")
 p1paddle.goto(-365, 0)
 
-# left player paddle
+# right player paddle
 p2paddle = trtl.Turtle()
-p2paddle.shape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
+# p2paddle.shape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
+p2paddle.shape("square")
+p2paddle.shapesize(stretch_len=6)
+p2paddle.setheading(90)
 p2paddle.penup()
 p2paddle.color("#ffffff")
 p2paddle.goto(365, 0)
+wn.tracer(True)
 
 pball = trtl.Turtle()
 pball.shape("square")
@@ -81,32 +88,74 @@ pball.turtlesize(1)
 pball.speed("fastest")
 
 def play_ball():
-    global ballinplay
+    global ballinplay, p1score, p2score
     pball.goto(0, 0)
     angled = False
     angle = 0
     while angled == False:
-        if angle >= 0 and angle <= 45:
+        if angle >= 65 and angle <= 115:
             angle = random.randint(0, 360)
-        elif angle >= 315:
+        elif angle < 65:
             angle = random.randint(0, 360)
-        elif angle >= 135 and angle <= 225:
+        elif angle >= 255 and angle <= 295:
             angle = random.randint(0, 360)
         else:
             angled = True
     print(angle)
     if (angled == True):
         pball.setheading(angle)
+        time.sleep(1)
         ballinplay = True
         while ballinplay == True:
             pball.forward(3)
-            # if (pball.ycor() <= -290 or pball.ycor >= 290):
-            #     anglern = pball.heading()
-            #     if (anglern > 180):
-            #         bruhangle = anglern-90
-            #         if pball.ycor > 0:
-            #             pball.setheading(270-)
+            cury = pball.ycor()
+            if (cury <= -297):
+                anglern = pball.heading()
+                bruhangle = anglern
+                pball.setheading(360-bruhangle)
+            elif cury >= 297:
+                anglern = pball.heading()
+                bruhangle = anglern
+                pball.setheading(360-bruhangle)
+            if (pball.xcor() >= 397):
+                p1score += 1
+                p1scorewriter.clear()
+                p1scorewriter.write(str(p1score), align="right", font=scorefont)
+                ballinplay = False
+                play_ball()
+            elif (pball.xcor() <= -397):
+                p2score += 1
+                p2scorewriter.clear()
+                p2scorewriter.write(str(p2score), align="left", font=scorefont)
+                ballinplay = False
+                play_ball()
+            if (pball.distance(p1paddle) <= 3):
+                anglern = pball.heading()
+                bruhangle = anglern
+                pball.setheading(270-bruhangle+90)
+            elif (pball.distance(p2paddle) <= 3):
+                anglern = pball.heading()
+                bruhangle = anglern
+                pball.setheading(270-bruhangle+90)
+
+def leftup():
+    p1paddle.forward(1)
+
+def leftdown():
+    p1paddle.backward(1)
+
+def rightup():
+    p2paddle.forward(1)
+
+def rightdown():
+    p2paddle.backward(1)
 
 play_ball()
 
+wn.onkey(leftup, "w")
+wn.onkey(leftdown, "d")
+wn.onkey(rightup, "Up")
+wn.onkey(rightdown, "Down")
+
+wn.listen()
 wn.mainloop()
