@@ -101,7 +101,6 @@ def play_ball():
             angle = random.randint(0, 360)
         else:
             angled = True
-    print(angle)
     if (angled == True):
         pball.setheading(angle)
         time.sleep(1)
@@ -139,16 +138,20 @@ def play_ball():
                 pball.setheading(270-bruhangle+90)
 
 def leftup():
-    p1paddle.forward(1)
+    global p1paddle, p2paddle
+    p1paddle.forward(5)
 
 def leftdown():
-    p1paddle.backward(1)
+    global p1paddle, p2paddle
+    p1paddle.backward(5)
 
 def rightup():
-    p2paddle.forward(1)
+    global p1paddle, p2paddle
+    p2paddle.forward(5)
 
 def rightdown():
-    p2paddle.backward(1)
+    global p1paddle, p2paddle
+    p2paddle.goto(p2paddle.xcor(), p2paddle.ycor()-5)
 
 play_ball()
 
