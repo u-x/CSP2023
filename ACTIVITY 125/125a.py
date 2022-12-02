@@ -59,6 +59,8 @@ p2scorewriter.color("white")
 p2scorewriter.goto(30, 220)
 p2scorewriter.write("0", align="left", font=scorefont)
 
+wn.tracer(True)
+
 # left player paddle
 p1paddle = trtl.Turtle()
 # p1paddle.shape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
@@ -78,7 +80,6 @@ p2paddle.setheading(90)
 p2paddle.penup()
 p2paddle.color("#ffffff")
 p2paddle.goto(365, 0)
-wn.tracer(True)
 
 pball = trtl.Turtle()
 pball.shape("square")
@@ -106,6 +107,7 @@ def play_ball():
         time.sleep(1)
         ballinplay = True
         while ballinplay == True:
+            bounce = False
             pball.forward(3)
             cury = pball.ycor()
             if (cury <= -297):
@@ -128,37 +130,43 @@ def play_ball():
                 p2scorewriter.write(str(p2score), align="left", font=scorefont)
                 ballinplay = False
                 play_ball()
-            if (pball.distance(p1paddle) <= 3):
-                anglern = pball.heading()
-                bruhangle = anglern
-                pball.setheading(270-bruhangle+90)
-            elif (pball.distance(p2paddle) <= 3):
-                anglern = pball.heading()
-                bruhangle = anglern
-                pball.setheading(270-bruhangle+90)
+            if (pball.distance(p1paddle) < 60):
+                print(bounce)
+                if bounce == False:
+                    bounce = True
+                    anglern = pball.heading()
+                    bruhangle = anglern
+                    pball.setheading((360-bruhangle)+180)
+            elif (pball.distance(p2paddle) < 60):
+                if bounce == False:
+                    bounce = True
+                    anglern = pball.heading()
+                    bruhangle = anglern
+                    pball.setheading(180-bruhangle)
+            else:
+                bounce = False
 
 def leftup():
     global p1paddle, p2paddle
-    p1paddle.forward(5)
+    p1paddle.forward(10)
 
 def leftdown():
     global p1paddle, p2paddle
-    p1paddle.backward(5)
+    p1paddle.backward(10)
 
 def rightup():
     global p1paddle, p2paddle
-    p2paddle.forward(5)
+    p2paddle.forward(10)
 
 def rightdown():
     global p1paddle, p2paddle
-    p2paddle.goto(p2paddle.xcor(), p2paddle.ycor()-5)
+    p2paddle.backward(10)
 
+wn.onkeypress(leftup, "w")
+wn.onkeypress(leftdown, "s")
+wn.onkeypress(rightup, "Up")
+wn.onkeypress(rightdown, "Down")
+wn.listen()
 play_ball()
 
-wn.onkey(leftup, "w")
-wn.onkey(leftdown, "d")
-wn.onkey(rightup, "Up")
-wn.onkey(rightdown, "Down")
-
-wn.listen()
 wn.mainloop()
