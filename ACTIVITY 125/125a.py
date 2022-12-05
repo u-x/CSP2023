@@ -106,8 +106,8 @@ def play_ball():
         pball.setheading(angle)
         time.sleep(1)
         ballinplay = True
+        bounce = False
         while ballinplay == True:
-            bounce = False
             pball.forward(3)
             cury = pball.ycor()
             if (cury <= -297):
