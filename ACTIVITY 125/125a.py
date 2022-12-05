@@ -5,7 +5,6 @@ wn = trtl.Screen()
 
 # background
 wn.bgcolor("#000000")
-trtl.addshape("H:\\CSP2023\\ACTIVITY 125\\keke.gif")
 
 # vars
 p1score = 0
@@ -136,13 +135,15 @@ def play_ball():
                     bounce = True
                     anglern = pball.heading()
                     bruhangle = anglern
-                    pball.setheading((360-bruhangle)+180)
+                    # pball.setheading((360-bruhangle)+180)
+                    pball.setheading(random.randint(315, 360+45))
             elif (pball.distance(p2paddle) < 60):
                 if bounce == False:
                     bounce = True
                     anglern = pball.heading()
                     bruhangle = anglern
-                    pball.setheading(180-bruhangle)
+                    # pball.setheading(180-bruhangle)
+                    pball.setheading(random.randint(135, 225))
             else:
                 bounce = False
 
