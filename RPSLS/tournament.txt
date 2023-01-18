@@ -1,0 +1,919 @@
+--------------------------------------------------------------------------------
+Section 0 - Line up
+--------------------------------------------------------------------------------
+Player 0 (P0): Lizard, Lizard
+        Always choose Lizard
+Player 1 (P1): Paper, Paper
+        Always choose Paper
+Player 2 (P2): Rock, Rock
+        Always choose Rock
+Player 3 (P3): Scissors, Scissors
+        Always choose Scissors
+Player 4 (P4): Spock, Spock
+        Always choose Spock
+Player 5 (P5): Alternator, Alternator
+        Alternates between 2 choices.
+Player 6 (P6): Borrelli, The Thing
+        Does The Thing.
+--------------------------------------------------------------------------------
+Section 1 - Player vs. Player
+--------------------------------------------------------------------------------
+Each column shows pts/round earned against each other player:
+             P0     P1     P2     P3     P4     P5     P6
+vs. P0 :      0 -10000  10000  10000 -10000  -3200   9900
+vs. P1 :  10000      0 -10000  10000 -10000    100   9900
+vs. P2 : -10000  10000      0 -10000  10000   3200  10000
+vs. P3 : -10000 -10000  10000      0  10000      0   9800
+vs. P4 :  10000  10000 -10000 -10000      0   -100  10000
+vs. P5 :   3200   -100  -3200      0    100      0   9400
+vs. P6 :  -9900  -9900 -10000  -9800 -10000  -9400      0
+TOTAL  :  -6700 -10000 -13200  -9800  -9900  -9400  59000
+--------------------------------------------------------------------------------
+Section 2 - Leaderboard
+--------------------------------------------------------------------------------
+Average points per round:
+Team name (P#):  Score      with strategy name
+Borrelli  (P6):      59000 points with The Thing                               
+Lizard    (P0):      -6700 points with Lizard                                  
+Alternator(P5):      -9400 points with Alternator                              
+Scissors  (P3):      -9800 points with Scissors                                
+Spock     (P4):      -9900 points with Spock                                   
+Paper     (P1):     -10000 points with Paper                                   
+Rock      (P2):     -13200 points with Rock                                    
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+BOT_1--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'r', 'p', 's', 'l', or 'k'
+####
+
+team_name = 'Lizard'
+strategy_name = 'Lizard'
+strategy_description = 'Always choose Lizard'
+    
+def move(my_history, their_history, my_score, their_score):
+    
+    '''
+                            O   P   P   O   N   E   N   T
+    ||----------||----------||----------||----------||----------||----------||
+    ||          || Rock     || Paper    || Scissors || Lizard   || spock    ||
+    ||----------||----------||----------||----------||----------||----------||   
+    || Rock     ||    0 pts || -100 pts ||  100 pts ||  100 pts || -100 pts ||
+  Y ||----------||----------||----------||----------||----------||----------||
+    || Paper    ||  100 pts ||    0 pts || -100 pts || -100 pts ||  100 pts ||                                                    
+  O ||----------||----------||----------||----------||----------||----------||
+    || Scissors || -100 pts ||  100 pts ||    0 pts ||  100 pts || -100 pts ||                                         
+  U ||----------||----------||----------||----------||----------||----------|| 
+    || Lizard   || -100 pts ||  100 pts || -100 pts ||    0 pts ||  100 pts ||                               
+    ||----------||----------||----------||----------||----------||----------||
+    || spock    ||  100 pts || -100 pts ||  100 pts || -100 pts ||    0 pts ||              
+    ||----------||----------||----------||----------||----------||----------||
+
+    Rock = 'r'
+    Paper = 'p'
+    Scissors = 's'
+    Lizard = 'l'
+    spock = 'k'      
+    '''
+    '''Make my move based on the history with this player.
+    
+    history: a string with one letter (r, p, s, l, or k) per round that has been played with this opponent.
+    their_history: a string of the same length as history, possibly empty. 
+    The first round between these two players is my_history[0] and their_history[0]
+    The most recent round is my_history[-1] and their_history[-1]
+    
+    Returns a 'r', 'p', 's', 'l', or 'k' for Rock, Paper, Scissors, Lizard, Spock
+    '''
+    
+    # This player always Play Rock.
+    return 'l'
+    --------------------------------------------------------------------------------
+BOT_2--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'r', 'p', 's', 'l', or 'k'
+####
+
+team_name = 'Paper'
+strategy_name = 'Paper'
+strategy_description = 'Always choose Paper'
+    
+def move(my_history, their_history, my_score, their_score):
+    
+    '''
+                            O   P   P   O   N   E   N   T
+    ||----------||----------||----------||----------||----------||----------||
+    ||          || Rock     || Paper    || Scissors || Lizard   || spock    ||
+    ||----------||----------||----------||----------||----------||----------||   
+    || Rock     ||    0 pts || -100 pts ||  100 pts ||  100 pts || -100 pts ||
+  Y ||----------||----------||----------||----------||----------||----------||
+    || Paper    ||  100 pts ||    0 pts || -100 pts || -100 pts ||  100 pts ||                                                    
+  O ||----------||----------||----------||----------||----------||----------||
+    || Scissors || -100 pts ||  100 pts ||    0 pts ||  100 pts || -100 pts ||                                         
+  U ||----------||----------||----------||----------||----------||----------|| 
+    || Lizard   || -100 pts ||  100 pts || -100 pts ||    0 pts ||  100 pts ||                               
+    ||----------||----------||----------||----------||----------||----------||
+    || spock    ||  100 pts || -100 pts ||  100 pts || -100 pts ||    0 pts ||              
+    ||----------||----------||----------||----------||----------||----------||
+
+    Rock = 'r'
+    Paper = 'p'
+    Scissors = 's'
+    Lizard = 'l'
+    spock = 'k'      
+    '''
+    '''Make my move based on the history with this player.
+    
+    history: a string with one letter (r, p, s, l, or k) per round that has been played with this opponent.
+    their_history: a string of the same length as history, possibly empty. 
+    The first round between these two players is my_history[0] and their_history[0]
+    The most recent round is my_history[-1] and their_history[-1]
+    
+    Returns a 'r', 'p', 's', 'l', or 'k' for Rock, Paper, Scissors, Lizard, Spock
+    '''
+    
+    # This player always Play Rock.
+    return 'p'
+    --------------------------------------------------------------------------------
+BOT_3--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'r', 'p', 's', 'l', or 'k'
+####
+
+team_name = 'Rock'
+strategy_name = 'Rock'
+strategy_description = 'Always choose Rock'
+    
+def move(my_history, their_history, my_score, their_score):
+    
+    '''
+                            O   P   P   O   N   E   N   T
+    ||----------||----------||----------||----------||----------||----------||
+    ||          || Rock     || Paper    || Scissors || Lizard   || spock    ||
+    ||----------||----------||----------||----------||----------||----------||   
+    || Rock     ||    0 pts || -100 pts ||  100 pts ||  100 pts || -100 pts ||
+  Y ||----------||----------||----------||----------||----------||----------||
+    || Paper    ||  100 pts ||    0 pts || -100 pts || -100 pts ||  100 pts ||                                                    
+  O ||----------||----------||----------||----------||----------||----------||
+    || Scissors || -100 pts ||  100 pts ||    0 pts ||  100 pts || -100 pts ||                                         
+  U ||----------||----------||----------||----------||----------||----------|| 
+    || Lizard   || -100 pts ||  100 pts || -100 pts ||    0 pts ||  100 pts ||                               
+    ||----------||----------||----------||----------||----------||----------||
+    || spock    ||  100 pts || -100 pts ||  100 pts || -100 pts ||    0 pts ||              
+    ||----------||----------||----------||----------||----------||----------||
+
+    Rock = 'r'
+    Paper = 'p'
+    Scissors = 's'
+    Lizard = 'l'
+    spock = 'k'      
+    '''
+    '''Make my move based on the history with this player.
+    
+    history: a string with one letter (r, p, s, l, or k) per round that has been played with this opponent.
+    their_history: a string of the same length as history, possibly empty. 
+    The first round between these two players is my_history[0] and their_history[0]
+    The most recent round is my_history[-1] and their_history[-1]
+    
+    Returns a 'r', 'p', 's', 'l', or 'k' for Rock, Paper, Scissors, Lizard, Spock
+    '''
+    
+    # This player always Play Rock.
+    return 'r'
+    --------------------------------------------------------------------------------
+BOT_4--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'r', 'p', 's', 'l', or 'k'
+####
+
+team_name = 'Scissors'
+strategy_name = 'Scissors'
+strategy_description = 'Always choose Scissors'
+    
+def move(my_history, their_history, my_score, their_score):
+    
+    '''
+                            O   P   P   O   N   E   N   T
+    ||----------||----------||----------||----------||----------||----------||
+    ||          || Rock     || Paper    || Scissors || Lizard   || spock    ||
+    ||----------||----------||----------||----------||----------||----------||   
+    || Rock     ||    0 pts || -100 pts ||  100 pts ||  100 pts || -100 pts ||
+  Y ||----------||----------||----------||----------||----------||----------||
+    || Paper    ||  100 pts ||    0 pts || -100 pts || -100 pts ||  100 pts ||                                                    
+  O ||----------||----------||----------||----------||----------||----------||
+    || Scissors || -100 pts ||  100 pts ||    0 pts ||  100 pts || -100 pts ||                                         
+  U ||----------||----------||----------||----------||----------||----------|| 
+    || Lizard   || -100 pts ||  100 pts || -100 pts ||    0 pts ||  100 pts ||                               
+    ||----------||----------||----------||----------||----------||----------||
+    || spock    ||  100 pts || -100 pts ||  100 pts || -100 pts ||    0 pts ||              
+    ||----------||----------||----------||----------||----------||----------||
+
+    Rock = 'r'
+    Paper = 'p'
+    Scissors = 's'
+    Lizard = 'l'
+    spock = 'k'      
+    '''
+    '''Make my move based on the history with this player.
+    
+    history: a string with one letter (r, p, s, l, or k) per round that has been played with this opponent.
+    their_history: a string of the same length as history, possibly empty. 
+    The first round between these two players is my_history[0] and their_history[0]
+    The most recent round is my_history[-1] and their_history[-1]
+    
+    Returns a 'r', 'p', 's', 'l', or 'k' for Rock, Paper, Scissors, Lizard, Spock
+    '''
+    
+    # This player always Play Rock.
+    return 's'
+    --------------------------------------------------------------------------------
+BOT_5--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'r', 'p', 's', 'l', or 'k'
+####
+
+team_name = 'Spock'
+strategy_name = 'Spock'
+strategy_description = 'Always choose Spock'
+    
+def move(my_history, their_history, my_score, their_score):
+    
+    '''
+                            O   P   P   O   N   E   N   T
+    ||----------||----------||----------||----------||----------||----------||
+    ||          || Rock     || Paper    || Scissors || Lizard   || spock    ||
+    ||----------||----------||----------||----------||----------||----------||   
+    || Rock     ||    0 pts || -100 pts ||  100 pts ||  100 pts || -100 pts ||
+  Y ||----------||----------||----------||----------||----------||----------||
+    || Paper    ||  100 pts ||    0 pts || -100 pts || -100 pts ||  100 pts ||                                                    
+  O ||----------||----------||----------||----------||----------||----------||
+    || Scissors || -100 pts ||  100 pts ||    0 pts ||  100 pts || -100 pts ||                                         
+  U ||----------||----------||----------||----------||----------||----------|| 
+    || Lizard   || -100 pts ||  100 pts || -100 pts ||    0 pts ||  100 pts ||                               
+    ||----------||----------||----------||----------||----------||----------||
+    || spock    ||  100 pts || -100 pts ||  100 pts || -100 pts ||    0 pts ||              
+    ||----------||----------||----------||----------||----------||----------||
+
+    Rock = 'r'
+    Paper = 'p'
+    Scissors = 's'
+    Lizard = 'l'
+    spock = 'k'      
+    '''
+    '''Make my move based on the history with this player.
+    
+    history: a string with one letter (r, p, s, l, or k) per round that has been played with this opponent.
+    their_history: a string of the same length as history, possibly empty. 
+    The first round between these two players is my_history[0] and their_history[0]
+    The most recent round is my_history[-1] and their_history[-1]
+    
+    Returns a 'r', 'p', 's', 'l', or 'k' for Rock, Paper, Scissors, Lizard, Spock
+    '''
+    
+    # This player will always choose spock.
+    
+    return 'k'
+    --------------------------------------------------------------------------------
+BOT_6--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string
+#     strategy_name: a string
+#     strategy_description: a string
+#     move: A function that returns 'r', 'p', 's', 'l', or 'k'
+####
+
+team_name = 'Alternator'
+strategy_name = 'Alternator'
+strategy_description = 'Alternates between 2 choices.'
+
+iteration = 0
+    
+def move(my_history, their_history, my_score, their_score):
+    global iteration
+    '''
+                            O   P   P   O   N   E   N   T
+    ||----------||----------||----------||----------||----------||----------||
+    ||          || Rock     || Paper    || Scissors || Lizard   || spock    ||
+    ||----------||----------||----------||----------||----------||----------||   
+    || Rock     ||    0 pts || -100 pts ||  100 pts ||  100 pts || -100 pts ||
+  Y ||----------||----------||----------||----------||----------||----------||
+    || Paper    ||  100 pts ||    0 pts || -100 pts || -100 pts ||  100 pts ||                                                    
+  O ||----------||----------||----------||----------||----------||----------||
+    || Scissors || -100 pts ||  100 pts ||    0 pts ||  100 pts || -100 pts ||                                         
+  U ||----------||----------||----------||----------||----------||----------|| 
+    || Lizard   || -100 pts ||  100 pts || -100 pts ||    0 pts ||  100 pts ||                               
+    ||----------||----------||----------||----------||----------||----------||
+    || spock    ||  100 pts || -100 pts ||  100 pts || -100 pts ||    0 pts ||              
+    ||----------||----------||----------||----------||----------||----------||
+
+    Rock = 'r'
+    Paper = 'p'
+    Scissors = 's'
+    Lizard = 'l'
+    spock = 'k'      
+    '''
+    '''Make my move based on the history with this player.
+    
+    history: a string with one letter (r, p, s, l, or k) per round that has been played with this opponent.
+    their_history: a string of the same length as history, possibly empty. 
+    The first round between these two players is my_history[0] and their_history[0]
+    The most recent round is my_history[-1] and their_history[-1]
+    
+    Returns a 'r', 'p', 's', 'l', or 'k' for Rock, Paper, Scissors, Lizard, Spock
+    '''
+    
+    # This player will always choose spock.
+    iteration += 1
+    if len(my_history) == 0:
+      iteration = 0
+    if iteration > 2:
+      iteration = 0
+    
+    if iteration == 0:
+      return "s"
+    elif iteration == 1:
+      return "k"
+    else:
+      return "p"
+    
+    --------------------------------------------------------------------------------
+BORRELLI--------------------------------------------------------------------------------
+####
+# Each team's file must define four tokens:
+#     team_name: a string no more than 10 charactors long
+#     strategy_name: a string no more than 10 charactors long
+#     strategy_description: a string
+#     move: A function that returns 'r', 'p', 's', 'l', or 'k'
+####
+
+import random
+
+team_name = 'Borrelli'
+strategy_name = 'The Thing'
+strategy_description = 'Does The Thing.'
+'''
+                            O   P   P   O   N   E   N   T
+    ||----------||----------||----------||----------||----------||----------||
+    ||          || Rock     || Paper    || Scissors || Lizard   || spock    ||
+    ||----------||----------||----------||----------||----------||----------||   
+    || Rock     ||    0 pts || -100 pts ||  100 pts ||  100 pts || -100 pts ||
+  Y ||----------||----------||----------||----------||----------||----------||
+    || Paper    ||  100 pts ||    0 pts || -100 pts || -100 pts ||  100 pts ||                                                    
+  O ||----------||----------||----------||----------||----------||----------||
+    || Scissors || -100 pts ||  100 pts ||    0 pts ||  100 pts || -100 pts ||                                         
+  U ||----------||----------||----------||----------||----------||----------|| 
+    || Lizard   || -100 pts ||  100 pts || -100 pts ||    0 pts ||  100 pts ||                               
+    ||----------||----------||----------||----------||----------||----------||
+    || spock    ||  100 pts || -100 pts ||  100 pts || -100 pts ||    0 pts ||              
+    ||----------||----------||----------||----------||----------||----------||
+    Rock = 'r'
+    Paper = 'p'
+    Scissors = 's'
+    Lizard = 'l'
+    spock = 'k'      
+    
+    Make my move based on the history with this player.
+    
+    history: a string with one letter (r, p, s, l, or k) per round that has been played with this opponent.
+    their_history: a string of the same length as history, possibly empty. 
+    The first round between these two players is my_history[0] and their_history[0]
+    The most recent round is my_history[-1] and their_history[-1]
+    
+    Returns a 'r', 'p', 's', 'l', or 'k' for Rock, Paper, Scissors, Lizard, Spock
+'''
+
+pattern = False
+realpattern = ''
+patterndebounce = False
+solutionstr = ''
+iteration = 0
+
+def rand_move():
+  determiner = random.randint(0, 4)
+  if determiner == 0:
+    return "r"
+  elif determiner == 1:
+    return "p"
+  elif determiner == 2:
+    return "s"
+  elif determiner == 3:
+    return "l"
+  elif determiner == 4:
+    return "k"
+
+def move(my_history, their_history, my_score, their_score):
+    global pattern, realpattern, patterndebounce, solutionstr, iteration
+    if pattern == False:
+      print('nopattern')
+      if len(their_history) == 0:
+        patterndebounce = False
+        pattern = False
+        solutionstr = ''
+        iteration = 0
+        realpattern = ''
+        randomplay = rand_move()
+        return randomplay
+      else:
+        if len(their_history) >= 3:
+          print("longer or equal 2 3")
+          for i in "rpslk":
+            if their_history[-1] == i and their_history[-2] == i and their_history[-3] == i:
+              print("triple equality")
+              patterndebounce = True
+              if i == "r":
+                return "p"
+              elif i == "p":
+                return "s"
+              elif i == "s":
+                return "k"
+              elif i == "l":
+                return "s"
+              elif i == "k":
+                return "p"
+          print(patterndebounce)
+          if patterndebounce == False:
+            pattern = True
+            print("we got a pattern chief")
+            # make a random play if the pattern is true and let the other half of the code do the thinking
+            randplay = rand_move()
+            return randplay
+        else:
+          for i in "rpslk":
+            if their_history[-1] == i:
+              if i == "r":
+                return "p"
+              elif i == "p":
+                return "s"
+              elif i == "s":
+                return "k"
+              elif i == "l":
+                return "s"
+              elif i == "k":
+                return "p"
+    else:
+      if solutionstr != '':
+        print('solution isnt empty')
+        print(realpattern)
+        print(solutionstr)
+        iteration += 1
+        if iteration > len(solutionstr) - 1:
+          iteration = 0
+        print("their last was " + their_history[-1])
+        print("im playing " + solutionstr[iteration])
+        return solutionstr[iteration]
+      elif their_history[-1] != their_history[-2]:
+        if their_history[-1] == their_history[-3]:
+          realpattern = their_history[-1] + their_history[-2]
+          for i in realpattern:
+            if i == "r":
+              solutionstr += "p"
+            elif i == "p":
+              solutionstr += "s"
+            elif i == "s":
+              solutionstr += "k"
+            elif i == "l":
+              solutionstr += "s"
+            elif i == "k":
+              solutionstr += "p"
+          print(solutionstr)
+          return solutionstr[0]
+        elif their_history[-1] != their_history[-3] and their_history[-2] != their_history[-3]:
+          # im gonna take a crack at a triple
+          print(their_history)
+          realpattern = their_history[-1] + their_history[-3] + their_history[-2]
+          print("THE ONE PATTERN IS REAL " + realpattern)
+          for i in realpattern:
+            if i == "r":
+              solutionstr += "k"
+            elif i == "p":
+              solutionstr += "s"
+            elif i == "s":
+              solutionstr += "k"
+            elif i == "l":
+              solutionstr += "s"
+            elif i == "k":
+              solutionstr += "p"
+          iteration = 1
+          return solutionstr[iteration]
+        else:
+          nomoves = rand_move()
+          return nomoves
+        --------------------------------------------------------------------------------
+Section 3 - Game Data for Team Lizard
+--------------------------------------------------------------------------------
+10000 pt/round: Lizard(P0) "Lizard"
+-10000 pt/round: Paper(P1) "Paper"
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+llllllllllllllllllll
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Lizard(P0) "Lizard"
+10000 pt/round: Rock(P2) "Rock"
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+llllllllllllllllllll
+rrrrrrrrrrrrrrrrrrrr
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Lizard(P0) "Lizard"
+10000 pt/round: Scissors(P3) "Scissors"
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+llllllllllllllllllll
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+10000 pt/round: Lizard(P0) "Lizard"
+-10000 pt/round: Spock(P4) "Spock"
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+llllllllllllllllllll
+kkkkkkkkkkkkkkkkkkkk
+
+--------------------------------------------------------------------------------
+3200 pt/round: Lizard(P0) "Lizard"
+-3200 pt/round: Alternator(P5) "Alternator"
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+
+llllllllllllllllllll
+pskpskpskpskpskpskps
+
+--------------------------------------------------------------------------------
+-9900 pt/round: Lizard(P0) "Lizard"
+9900 pt/round: Borrelli(P6) "The Thing"
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+llllllllllllllllllll
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Paper
+--------------------------------------------------------------------------------
+-10000 pt/round: Paper(P1) "Paper"
+10000 pt/round: Lizard(P0) "Lizard"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+
+pppppppppppppppppppp
+llllllllllllllllllll
+
+--------------------------------------------------------------------------------
+10000 pt/round: Paper(P1) "Paper"
+-10000 pt/round: Rock(P2) "Rock"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+pppppppppppppppppppp
+rrrrrrrrrrrrrrrrrrrr
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Paper(P1) "Paper"
+10000 pt/round: Scissors(P3) "Scissors"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+pppppppppppppppppppp
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+10000 pt/round: Paper(P1) "Paper"
+-10000 pt/round: Spock(P4) "Spock"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+pppppppppppppppppppp
+kkkkkkkkkkkkkkkkkkkk
+
+--------------------------------------------------------------------------------
+-100 pt/round: Paper(P1) "Paper"
+100 pt/round: Alternator(P5) "Alternator"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+
+pppppppppppppppppppp
+pskpskpskpskpskpskps
+
+--------------------------------------------------------------------------------
+-9900 pt/round: Paper(P1) "Paper"
+9900 pt/round: Borrelli(P6) "The Thing"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+psssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+pppppppppppppppppppp
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Rock
+--------------------------------------------------------------------------------
+10000 pt/round: Rock(P2) "Rock"
+-10000 pt/round: Lizard(P0) "Lizard"
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+
+rrrrrrrrrrrrrrrrrrrr
+llllllllllllllllllll
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Rock(P2) "Rock"
+10000 pt/round: Paper(P1) "Paper"
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+rrrrrrrrrrrrrrrrrrrr
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+10000 pt/round: Rock(P2) "Rock"
+-10000 pt/round: Scissors(P3) "Scissors"
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+rrrrrrrrrrrrrrrrrrrr
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Rock(P2) "Rock"
+10000 pt/round: Spock(P4) "Spock"
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+rrrrrrrrrrrrrrrrrrrr
+kkkkkkkkkkkkkkkkkkkk
+
+--------------------------------------------------------------------------------
+-3200 pt/round: Rock(P2) "Rock"
+3200 pt/round: Alternator(P5) "Alternator"
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+
+rrrrrrrrrrrrrrrrrrrr
+pskpskpskpskpskpskps
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Rock(P2) "Rock"
+10000 pt/round: Borrelli(P6) "The Thing"
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+rrrrrrrrrrrrrrrrrrrr
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Scissors
+--------------------------------------------------------------------------------
+10000 pt/round: Scissors(P3) "Scissors"
+-10000 pt/round: Lizard(P0) "Lizard"
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+
+ssssssssssssssssssss
+llllllllllllllllllll
+
+--------------------------------------------------------------------------------
+10000 pt/round: Scissors(P3) "Scissors"
+-10000 pt/round: Paper(P1) "Paper"
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+ssssssssssssssssssss
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Scissors(P3) "Scissors"
+10000 pt/round: Rock(P2) "Rock"
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+ssssssssssssssssssss
+rrrrrrrrrrrrrrrrrrrr
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Scissors(P3) "Scissors"
+10000 pt/round: Spock(P4) "Spock"
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+ssssssssssssssssssss
+kkkkkkkkkkkkkkkkkkkk
+
+--------------------------------------------------------------------------------
+0 pt/round: Scissors(P3) "Scissors"
+0 pt/round: Alternator(P5) "Alternator"
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+
+ssssssssssssssssssss
+pskpskpskpskpskpskps
+
+--------------------------------------------------------------------------------
+-9800 pt/round: Scissors(P3) "Scissors"
+9800 pt/round: Borrelli(P6) "The Thing"
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+lkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+ssssssssssssssssssss
+kkkkkkkkkkkkkkkkkkkk
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Spock
+--------------------------------------------------------------------------------
+-10000 pt/round: Spock(P4) "Spock"
+10000 pt/round: Lizard(P0) "Lizard"
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+
+kkkkkkkkkkkkkkkkkkkk
+llllllllllllllllllll
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Spock(P4) "Spock"
+10000 pt/round: Paper(P1) "Paper"
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+kkkkkkkkkkkkkkkkkkkk
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+10000 pt/round: Spock(P4) "Spock"
+-10000 pt/round: Rock(P2) "Rock"
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+kkkkkkkkkkkkkkkkkkkk
+rrrrrrrrrrrrrrrrrrrr
+
+--------------------------------------------------------------------------------
+10000 pt/round: Spock(P4) "Spock"
+-10000 pt/round: Scissors(P3) "Scissors"
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+kkkkkkkkkkkkkkkkkkkk
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+100 pt/round: Spock(P4) "Spock"
+-100 pt/round: Alternator(P5) "Alternator"
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+
+kkkkkkkkkkkkkkkkkkkk
+pskpskpskpskpskpskps
+
+--------------------------------------------------------------------------------
+-10000 pt/round: Spock(P4) "Spock"
+10000 pt/round: Borrelli(P6) "The Thing"
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+kkkkkkkkkkkkkkkkkkkk
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Alternator
+--------------------------------------------------------------------------------
+-3200 pt/round: Alternator(P5) "Alternator"
+3200 pt/round: Lizard(P0) "Lizard"
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+
+pskpskpskpskpskpskps
+llllllllllllllllllll
+
+--------------------------------------------------------------------------------
+100 pt/round: Alternator(P5) "Alternator"
+-100 pt/round: Paper(P1) "Paper"
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+pskpskpskpskpskpskps
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+3200 pt/round: Alternator(P5) "Alternator"
+-3200 pt/round: Rock(P2) "Rock"
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+pskpskpskpskpskpskps
+rrrrrrrrrrrrrrrrrrrr
+
+--------------------------------------------------------------------------------
+0 pt/round: Alternator(P5) "Alternator"
+0 pt/round: Scissors(P3) "Scissors"
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+pskpskpskpskpskpskps
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+-100 pt/round: Alternator(P5) "Alternator"
+100 pt/round: Spock(P4) "Spock"
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+pskpskpskpskpskpskps
+kkkkkkkkkkkkkkkkkkkk
+
+--------------------------------------------------------------------------------
+-9400 pt/round: Alternator(P5) "Alternator"
+9400 pt/round: Borrelli(P6) "The Thing"
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+lkpppskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskp
+
+pskpskpskpskpskpskps
+skpskpskpskpskpskpsk
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Section 3 - Game Data for Team Borrelli
+--------------------------------------------------------------------------------
+9900 pt/round: Borrelli(P6) "The Thing"
+-9900 pt/round: Lizard(P0) "Lizard"
+lsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+
+ssssssssssssssssssss
+llllllllllllllllllll
+
+--------------------------------------------------------------------------------
+9900 pt/round: Borrelli(P6) "The Thing"
+-9900 pt/round: Paper(P1) "Paper"
+psssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+
+ssssssssssssssssssss
+pppppppppppppppppppp
+
+--------------------------------------------------------------------------------
+10000 pt/round: Borrelli(P6) "The Thing"
+-10000 pt/round: Rock(P2) "Rock"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+pppppppppppppppppppp
+rrrrrrrrrrrrrrrrrrrr
+
+--------------------------------------------------------------------------------
+9800 pt/round: Borrelli(P6) "The Thing"
+-9800 pt/round: Scissors(P3) "Scissors"
+lkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+kkkkkkkkkkkkkkkkkkkk
+ssssssssssssssssssss
+
+--------------------------------------------------------------------------------
+10000 pt/round: Borrelli(P6) "The Thing"
+-10000 pt/round: Spock(P4) "Spock"
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+pppppppppppppppppppp
+kkkkkkkkkkkkkkkkkkkk
+
+--------------------------------------------------------------------------------
+9400 pt/round: Borrelli(P6) "The Thing"
+-9400 pt/round: Alternator(P5) "Alternator"
+lkpppskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskp
+skpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpskpsk
+
+skpskpskpskpskpskpsk
+pskpskpskpskpskpskps
+
+--------------------------------------------------------------------------------
