@@ -1,0 +1,13 @@
+ping working....
+
+Pinging www.justleo.me [172.67.160.61] with 32 bytes of data:
+Reply from 172.67.160.61: bytes=32 time=5ms TTL=50
+Reply from 172.67.160.61: bytes=32 time=6ms TTL=50
+Reply from 172.67.160.61: bytes=32 time=6ms TTL=50
+Reply from 172.67.160.61: bytes=32 time=7ms TTL=50
+
+Ping statistics for 172.67.160.61:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 5ms, Maximum = 7ms, Average = 6ms
+
